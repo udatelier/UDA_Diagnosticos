@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UDA — TW · Marcos de Trabajo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#111111;
+    --muted:#5a5a5a;
+    --line:#1a1a1a;
+    --line-soft:#d9d9d9;
+    --panel:#f4f4f4;
+    --mono:'Roboto Mono', 'Courier New', monospace;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;}
+  body{line-height:1.6;font-size:16px;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+
+  h1,h2,h3,.eco-title,.level-title,.qtext,.step-num,.brand,.eco-status,.kicker,.tag,.qnum,.num,
+  .nav-back,.eco-enter{font-family:var(--mono);}
+
+  /* ===== NAV ===== */
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);
+    border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;
+    -webkit-overflow-scrolling:touch;}
+  nav .navinner{display:flex;gap:10px;padding:14px 20px;align-items:center;font-family:var(--mono);}
+  nav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.02em;
+    text-transform:uppercase;flex:0 0 auto;cursor:pointer;}
+  nav a.active{color:var(--ink);border-bottom:2px solid var(--ink);padding-bottom:4px;}
+  .nav-back{font-size:12px;color:var(--ink);font-weight:500;cursor:pointer;flex:0 0 auto;
+    display:flex;align-items:center;gap:6px;text-transform:uppercase;}
+  .nav-back::before{content:"←";}
+  .nav-sep{width:1px;height:14px;background:var(--line-soft);flex:0 0 auto;}
+  .nav-slash{color:var(--line-soft);font-size:12px;flex:0 0 auto;}
+
+  /* ===== VIEW SWITCHING ===== */
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ===== INDEX / PORTADA ===== */
+  .index-hero{padding:72px 0 36px;border-bottom:1px solid var(--line);}
+  .kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 18px;font-weight:500;}
+  h1{font-size:34px;line-height:1.2;margin:0 0 16px;font-weight:500;letter-spacing:-0.01em;}
+  h1 em{font-style:italic;font-weight:400;}
+  .index-hero p.lead{font-family:var(--sans);font-size:17px;color:var(--muted);margin:0;max-width:560px;}
+
+  .eco-grid{padding:40px 0 64px;}
+  .eco-card{display:block;border:1px solid var(--line);border-radius:14px;padding:26px 24px;
+    margin-bottom:18px;cursor:pointer;transition:background .15s ease;text-decoration:none;color:var(--ink);}
+  .eco-card:hover{background:var(--panel);}
+  .eco-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;}
+  .eco-title{font-size:18px;font-weight:500;margin:0;letter-spacing:-0.005em;}
+  .eco-status{flex:0 0 auto;font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+    border:1px solid var(--line);border-radius:99px;padding:4px 10px;white-space:nowrap;font-weight:500;}
+  .eco-status.marco{color:var(--muted);border-color:var(--line-soft);}
+  .eco-desc{font-family:var(--sans);color:var(--muted);font-size:15px;margin:0 0 14px;}
+  .eco-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-size:11px;border:1px solid var(--line-soft);padding:5px 10px;border-radius:99px;color:var(--muted);}
+  .eco-enter{margin-top:14px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px;}
+  .eco-enter::after{content:"→";transition:transform .15s ease;}
+  .eco-card:hover .eco-enter::after{transform:translateX(3px);}
+
+  .index-footnote{font-family:var(--sans);padding:0 0 48px;color:var(--muted);font-size:13px;max-width:560px;}
+
+  /* ===== PROJECT VIEW ===== */
+  header.hero{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .hero p.lead{font-family:var(--sans);font-size:17px;color:var(--muted);margin:0 0 22px;max-width:560px;}
+  .tags-row{display:flex;flex-wrap:wrap;gap:8px;}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line-soft);}
+  section:last-of-type{border-bottom:none;}
+  .num{font-size:12px;color:var(--muted);letter-spacing:.04em;margin:0 0 10px;}
+  h2{font-size:23px;margin:0 0 16px;font-weight:500;letter-spacing:-0.01em;}
+  .section-intro{font-family:var(--sans);color:var(--muted);font-size:16px;margin:0 0 28px;max-width:600px;}
+
+  .level-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-soft);align-items:flex-start;}
+  .level-row:last-child{border-bottom:none;}
+  .level-badge{flex:0 0 auto;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;font-family:var(--mono);}
+  .level-badge.filled{background:var(--ink);color:var(--bg);}
+  .level-body p{margin:0;}
+  .level-title{font-weight:500;margin:0 0 4px;font-size:15px;}
+  .level-sub{font-family:var(--sans);color:var(--muted);font-size:14px;margin:0;}
+  .level-list{font-family:var(--sans);margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:14px;}
+  .level-list li{margin-bottom:2px;}
+
+  details.qcard{border:1px solid var(--line-soft);border-radius:10px;margin-bottom:10px;
+    overflow:hidden;background:var(--bg);}
+  details.qcard[open]{border-color:var(--line);}
+  details.qcard summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;gap:14px;
+    align-items:flex-start;}
+  details.qcard summary::-webkit-details-marker{display:none;}
+  .qnum{flex:0 0 auto;font-size:12px;color:var(--muted);font-weight:500;min-width:22px;}
+  .qtext{font-family:var(--sans);flex:1;font-size:15px;font-weight:500;}
+  .qchevron{flex:0 0 auto;color:var(--muted);font-size:13px;transition:transform .15s ease;margin-top:1px;}
+  details.qcard[open] .qchevron{transform:rotate(90deg);}
+  .qbody{font-family:var(--sans);padding:0 18px 18px 54px;font-size:14px;color:var(--muted);}
+  .qbody ul{margin:6px 0 0;padding-left:18px;}
+  .qbody li{margin-bottom:4px;}
+
+  .why{font-family:var(--sans);display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);
+    margin:0 0 18px;padding:10px 14px;background:var(--panel);border-radius:8px;}
+  .why b{color:var(--ink);font-weight:600;}
+
+  .pending{font-family:var(--sans);display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink);
+    margin:0 0 22px;padding:12px 14px;background:#fff;border:1px dashed var(--line);border-radius:8px;}
+  .pending b{font-weight:600;}
+
+  .step-list{counter-reset:step;}
+  .step{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-soft);}
+  .step:last-child{border-bottom:none;}
+  .step-num{counter-increment:step;flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+    background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;
+    display:flex;align-items:center;justify-content:center;}
+  .step-num::before{content:counter(step);}
+  .step p{font-family:var(--sans);margin:0;font-size:15px;}
+
+  .closing{background:var(--ink);color:var(--bg);padding:48px 0;margin-top:0;}
+  .closing .wrap p{font-family:var(--sans);font-size:16px;color:#d8d8d8;margin:0;}
+  .closing .wrap p b{color:#fff;}
+
+  footer{font-family:var(--mono);padding:28px 0 50px;text-align:center;color:var(--muted);font-size:11px;
+    text-transform:uppercase;letter-spacing:.04em;}
+
+  @media (max-width:480px){
+    h1{font-size:25px;}
+    h2{font-size:21px;}
+    .qbody{padding-left:18px;}
+    .eco-top{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- VISTA 0 — ÍNDICE                                              -->
+<!-- ============================================================ -->
+<div class="view active" id="view-index">
+  <nav>
+    <div class="navinner">
+      <span style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:-0.01em;">UD<span style="color:var(--muted);">_</span>A <span class="nav-slash">//</span> un desperfecto atelier</span>
+    </div>
+  </nav>
+
+  <header class="index-hero wrap">
+    <p class="kicker">TW · Marcos de trabajo en desarrollo</p>
+    <h1>Dos ecosistemas, un mismo <em>lenguaje:</em> la bicicleta.</h1>
+    <p class="lead">Mismo cliente, dos geografías y dos tipos de proyecto. Antes de cotizar cualquiera de los dos, alineamos juntos el marco de trabajo: qué se va a hacer, en qué orden, y qué preguntas hay que resolver primero.</p>
+  </header>
+
+  <div class="eco-grid wrap">
+
+    <a class="eco-card" data-target="view-bikeshop">
+      <div class="eco-top">
+        <p class="eco-title">TW Bike Shop — Showroom y Oportunidades</p>
+        <span class="eco-status marco">En diagnóstico</span>
+      </div>
+      <p class="eco-desc">Showroom + taller en lote propio, y un punto de servicio para ciclistas cerca de La Pedrera MTB Park.</p>
+      <div class="eco-tags">
+        <span class="tag">La Paz, BCS</span>
+        <span class="tag">Dos sitios</span>
+      </div>
+      <p class="eco-enter">Ver marco de trabajo</p>
+    </a>
+
+    <a class="eco-card" data-target="view-senaletica">
+      <div class="eco-top">
+        <p class="eco-title">Señalética y Masterplan de Pistas — Rancho</p>
+        <span class="eco-status marco">En diagnóstico</span>
+      </div>
+      <p class="eco-desc">Sistema de señalética, infraestructura complementaria y masterplan de pistas ya trazadas, en zona Turquesa / Los Planes.</p>
+      <div class="eco-tags">
+        <span class="tag">Zona Turquesa / Los Planes, BCS</span>
+        <span class="tag">Pistas existentes</span>
+      </div>
+      <p class="eco-enter">Ver marco de trabajo</p>
+    </a>
+
+  </div>
+
+  <p class="index-footnote wrap">Ambos proyectos están en fase de diagnóstico — todavía sin propuesta económica formal. Este documento define el marco sobre el cual vamos a trabajar antes de llegar a esa conversación.</p>
+
+  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- VISTA 1 — TW BIKESHOP (Showroom + La Pedrera)                 -->
+<!-- ============================================================ -->
+<div class="view" id="view-bikeshop">
+  <nav>
+    <div class="navinner" id="nav-bikeshop">
+      <span class="nav-back" data-target="view-index">Índice</span>
+      <span class="nav-sep"></span>
+      <a href="#bs-objetivo">Objetivo</a>
+      <a href="#bs-bloque-a">Lotes</a>
+      <a href="#bs-bloque-b">Programa</a>
+      <a href="#bs-bloque-c">Operación</a>
+      <a href="#bs-bloque-d">Secuencia</a>
+      <a href="#bs-siguiente">Siguiente paso</a>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <p class="kicker">UD.A — un desperfecto atelier · Brief de diagnóstico</p>
+    <h1>TW — Bike Shop / Showroom y Oportunidades</h1>
+    <p class="lead">Antes de hablar de metros, materiales o presupuesto, alineemos la secuencia de decisiones: el showroom + taller en tu lote, y el punto de servicio para ciclistas cerca de La Pedrera.</p>
+    <div class="tags-row">
+      <span class="tag">La Paz, BCS</span>
+      <span class="tag">Dos sitios</span>
+      <span class="tag">Sin costo — fase de diagnóstico</span>
+    </div>
+  </header>
+
+  <section id="bs-objetivo" class="wrap">
+    <p class="num">Objetivo de este documento</p>
+    <h2>Hacer las preguntas correctas, en el orden correcto.</h2>
+    <p class="section-intro">Este brief no es una cotización. Es el paso que hace posible que la cotización, cuando llegue, sea justa — para ti y para nosotros. Proponemos pensar tus dos proyectos como un solo ecosistema, con tres niveles de trabajo.</p>
+
+    <div class="level-row">
+      <div class="level-badge filled">1</div>
+      <div class="level-body">
+        <p class="level-title">Diagnóstico inicial — este documento</p>
+        <p class="level-sub">Sin costo. Base para todo lo demás.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">2</div>
+      <div class="level-body">
+        <p class="level-title">Hoja de ruta / Masterplan de coordinación</p>
+        <p class="level-sub">Define secuencia, prioridades y cómo se conectan (o no) los dos proyectos.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">3</div>
+      <div class="level-body">
+        <p class="level-title">Los dos servicios, cada uno con propuesta propia</p>
+        <ul class="level-list">
+          <li>Diseño del showroom + taller</li>
+          <li>Estudio de factibilidad y definición de concepto — punto de servicio La Pedrera</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="bs-bloque-a" class="wrap">
+    <p class="num">Bloque A</p>
+    <h2>Información de los lotes</h2>
+    <div class="why">Para qué sirve esto: <b>saber si trabajamos con datos reales o hay que generarlos primero, y quién lo hace.</b></div>
+
+    <details class="qcard">
+      <summary><span class="qnum">01</span><span class="qtext">¿Tienen planos topográficos o levantamiento de medidas del lote del showroom/taller?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Si existen, compártelos antes de la siguiente sesión — agilizan todo lo que sigue.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">02</span><span class="qtext">¿Ya identificaron un lote específico cerca de La Pedrera, o sigue siendo una zona general por confirmar?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Esto determina si el Estudio de Factibilidad puede analizar un sitio concreto o si primero hay que acotar candidatos.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">03</span><span class="qtext">Si no hay planos de alguno de los dos: ¿nos autorizan hacer el levantamiento general, o lo gestionan ustedes con un topógrafo?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Cualquiera de las dos opciones es válida — solo necesitamos saber quién lo hace y cuándo.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">04</span><span class="qtext">¿El uso de suelo y la situación legal de ambos lotes está confirmada, o forma parte de lo que hay que investigar?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Uso de suelo, ZOFEMAT si aplica, restricciones de construcción. Si no está confirmado, esto entra directo al Estudio de Factibilidad.</div>
+    </details>
+  </section>
+
+  <section id="bs-bloque-b" class="wrap">
+    <p class="num">Bloque B</p>
+    <h2>Programa de necesidades</h2>
+    <div class="why">Para qué sirve esto: <b>saber si ya tienen una idea de los espacios que necesitan, o si la propuesta debe partir de cero.</b></div>
+
+    <details class="qcard">
+      <summary><span class="qnum">05</span><span class="qtext">Para el showroom + taller: ¿tienen una lista propia de espacios, o esperan que UDA proponga el programa desde cero?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Aunque sea informal — "necesitamos área de exhibición, taller, baño, bodega" — nos ayuda a no empezar en blanco.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">06</span><span class="qtext">¿Qué actividades específicas conviven en el taller?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Reparación, ensamble, almacenaje de bicicletas/refacciones, zona de prueba, etc.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">07</span><span class="qtext">La zona común con sombra — ¿extensión del showroom, zona de espera de clientes, o espacio de convivencia/eventos?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">El uso que le den cambia su ubicación, tamaño y materialidad dentro del conjunto.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">08</span><span class="qtext">Cuando dicen "la idea móvil" para La Pedrera, ¿se refieren a un carrito o trailer en vez de una construcción fija?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Esto cambia el alcance, el costo y los tiempos de manera importante — vale la pena confirmarlo desde ahora, antes de cualquier diseño.</div>
+    </details>
+  </section>
+
+  <section id="bs-bloque-c" class="wrap">
+    <p class="num">Bloque C</p>
+    <h2>Modelo de operación</h2>
+    <div class="why">Para qué sirve esto: <b>entender qué tan grande es el negocio detrás del espacio, y qué tan a fondo investigar antes de diseñar.</b></div>
+
+    <details class="qcard">
+      <summary><span class="qnum">09</span><span class="qtext">¿Quién operará el día a día de cada sitio — ustedes mismos, empleados contratados, o una concesión a tercero?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Cambia decisiones de layout, accesos de personal y áreas de servicio.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">10</span><span class="qtext">Para el punto de servicio en La Pedrera, ¿qué imaginan que se ofrece ahí?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">
+        <ul>
+          <li>Bebidas / hidratación y algo de comer rápido</li>
+          <li>Servicio o reparación básica de bicicleta — ¿solo ajustes menores o también repuestos?</li>
+          <li>Renta de equipo, venta de accesorios, otro</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">11</span><span class="qtext">¿Cuentan con capital propio para ambos proyectos, o alguno depende de buscar financiamiento o un socio?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Define si el Estudio de Factibilidad necesita formato apto para presentar a banco o inversionista.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">12</span><span class="qtext">¿Tienen un techo de presupuesto en mente para alguno de los dos, aunque sea aproximado?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Un número aproximado — aunque cambie después — ya nos ayuda a calibrar escala desde ahora.</div>
+    </details>
+  </section>
+
+  <section id="bs-bloque-d" class="wrap">
+    <p class="num">Bloque D</p>
+    <h2>Secuencia e intención</h2>
+    <div class="why">Para qué sirve esto: <b>construir la Hoja de Ruta — qué va primero y por qué.</b></div>
+
+    <details class="qcard">
+      <summary><span class="qnum">13</span><span class="qtext">¿Cuál de los dos proyectos les interesa materializar primero, o la intención es avanzar ambos en paralelo?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">No hay respuesta incorrecta — solo determina el orden en que UDA organiza el trabajo.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">14</span><span class="qtext">¿El showroom/taller genera ingresos que ayuden a financiar La Pedrera, o son independientes en capital y operación?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Si están conectados financieramente, la Hoja de Ruta tiene que reflejar esa dependencia.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">15</span><span class="qtext">Pensando en 12–24 meses, ¿cómo se imaginan que estos dos espacios conviven entre sí?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Una sola marca, negocios separados, o todavía sin definir — cualquier respuesta es un buen punto de partida.</div>
+    </details>
+  </section>
+
+  <section id="bs-siguiente" class="wrap">
+    <p class="num">Próximos pasos</p>
+    <h2>Con sus respuestas, UDA prepara:</h2>
+    <div class="step-list">
+      <div class="step"><div class="step-num"></div><p>Una Hoja de Ruta / Masterplan de coordinación — la secuencia de trabajo entre ambos proyectos.</p></div>
+      <div class="step"><div class="step-num"></div><p>Una propuesta formal de honorarios para el Diseño del Showroom + Taller.</p></div>
+      <div class="step"><div class="step-num"></div><p>Una propuesta formal de honorarios para el Estudio de Factibilidad y Definición de Concepto del punto de servicio en La Pedrera.</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div class="wrap">
+      <p>Este diagnóstico inicial <b>no tiene costo.</b> Es la base que nos permite proponerles honorarios justos — ni inflados por incertidumbre, ni ajustados sobre un alcance que todavía no conocemos del todo.</p>
+    </div>
+  </div>
+
+  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- VISTA 2 — SEÑALÉTICA Y MASTERPLAN DE PISTAS (Rancho)          -->
+<!-- ============================================================ -->
+<div class="view" id="view-senaletica">
+  <nav>
+    <div class="navinner" id="nav-senaletica">
+      <span class="nav-back" data-target="view-index">Índice</span>
+      <span class="nav-sep"></span>
+      <a href="#sn-objetivo">Objetivo</a>
+      <a href="#sn-mision">Misión</a>
+      <a href="#sn-fases">Fases</a>
+      <a href="#sn-preguntas">Preguntas</a>
+      <a href="#sn-siguiente">Siguiente paso</a>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <p class="kicker">UD.A — un desperfecto atelier · Marco de trabajo</p>
+    <h1>Señalética y Masterplan de Pistas — Rancho</h1>
+    <p class="lead">Las pistas ya están trazadas. Lo que falta es el sistema que las conecta entre sí, con el visitante, y con lo que el rancho representa.</p>
+    <div class="tags-row">
+      <span class="tag">Zona Turquesa / Los Planes, BCS</span>
+      <span class="tag">Pistas existentes</span>
+      <span class="tag">Sin costo — fase de marco de trabajo</span>
+    </div>
+  </header>
+
+  <section id="sn-objetivo" class="wrap">
+    <p class="num">Objetivo de este documento</p>
+    <h2>Definir el marco antes de diseñar nada.</h2>
+    <p class="section-intro">Este proyecto tiene una particularidad: antes de hablar de materiales, catálogo de elementos o estética, necesitamos resolver juntos algo más fundamental — a qué se subordina la señalética y el masterplan de pistas dentro de la visión completa del rancho.</p>
+
+    <div class="pending"><b>Pendiente clave:</b>&nbsp;todavía no está definida la misión / vocación del rancho (¿conservación? ¿turismo rural? ¿hospedaje? ¿educación ambiental?). Resolver esto es el primer paso del proceso, no el último.</div>
+  </section>
+
+  <section id="sn-mision" class="wrap">
+    <p class="num">Punto de partida</p>
+    <h2>La conversación de misión</h2>
+    <p class="section-intro">Sin saber a qué se subordina el sitio, cualquier decisión de materiales o estética sería diseño sin propósito. Por eso este proceso empieza con una conversación abierta, no con un catálogo de opciones.</p>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Qué representa o representará este rancho — más allá de tener pistas de mountain bike?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Conservación del sitio, turismo rural, hospedaje, educación ambiental, legado familiar — puede ser una combinación. No necesita estar resuelto hoy, pero sí nombrado.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Qué quieren que el visitante sienta o entienda del lugar, más allá de la pista que está recorriendo?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Esto determina si la señalética solo orienta, o también educa y cuenta una historia del sitio.</div>
+    </details>
+  </section>
+
+  <section id="sn-fases" class="wrap">
+    <p class="num">Fases del proceso</p>
+    <h2>Cinco pasos, en el orden correcto</h2>
+    <p class="section-intro">Reordenamos las fases para que cada una se apoye en la anterior, no al revés.</p>
+
+    <div class="level-row">
+      <div class="level-badge filled">1</div>
+      <div class="level-body">
+        <p class="level-title">Conversación de misión del rancho</p>
+        <p class="level-sub">Define el propósito al que todo lo demás se subordina.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">2</div>
+      <div class="level-body">
+        <p class="level-title">Investigación de materiales, referencias y especificación técnica regional</p>
+        <p class="level-sub">Qué existe, qué dura en clima/terreno de BCS, qué referentes de bike parks aplican.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">3</div>
+      <div class="level-body">
+        <p class="level-title">Catálogo de elementos a contemplar</p>
+        <p class="level-sub">Kiosco de trailhead, señales de cruce, marcadores de pista, infraestructura complementaria.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">4</div>
+      <div class="level-body">
+        <p class="level-title">Conceptualización estética</p>
+        <p class="level-sub">Cómo se ven y sienten esos elementos, coherente con UDA y con la misión del rancho.</p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-badge">5</div>
+      <div class="level-body">
+        <p class="level-title">Masterplan de pistas y señalética</p>
+        <p class="level-sub">Jerarquía espacial del sitio completo — la síntesis de todo lo anterior.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sn-preguntas" class="wrap">
+    <p class="num">Antes de avanzar</p>
+    <h2>Lo que necesitamos saber del sitio físico</h2>
+    <div class="why">Para qué sirve esto: <b>saber con qué información de las pistas ya construidas estamos trabajando.</b></div>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Existe un levantamiento o trazado documentado de las pistas ya construidas?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Plano, GPS track, o referencia física — cualquiera nos sirve como punto de partida.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Las pistas comparten el sitio con otros usos (senderismo, equino, ganadería), o son de uso exclusivo para ciclismo?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Determina si se necesita señalética normativa de convivencia entre usuarios distintos.</div>
+    </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Hay puntos de acceso/trailhead ya definidos, o eso también está abierto?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">El sistema de señalética típico se organiza en niveles: kiosco principal en el acceso, señales de cruce en puntos de decisión, y marcadores a lo largo de cada pista.</div>
+    </details>
+  </section>
+
+  <section id="sn-siguiente" class="wrap">
+    <p class="num">Próximos pasos</p>
+    <h2>Con esta conversación resuelta, UDA prepara:</h2>
+    <div class="step-list">
+      <div class="step"><div class="step-num"></div><p>Síntesis de la misión del rancho, como documento base de referencia para todo el proyecto.</p></div>
+      <div class="step"><div class="step-num"></div><p>Catálogo de elementos de señalética e infraestructura complementaria, con referencias técnicas y de materiales.</p></div>
+      <div class="step"><div class="step-num"></div><p>Una propuesta formal de honorarios y tiempos, una vez que el alcance esté claro.</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div class="wrap">
+      <p>Este marco de trabajo <b>no tiene costo todavía.</b> Es la conversación que necesitamos tener antes de poder decir cuánto tiempo y honorarios requiere el proyecto.</p>
+    </div>
+  </div>
+
+  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+</div>
+
+
+<script>
+  // ---- Navegación entre vistas ----
+  function showView(id){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    updateActiveNav(id);
+  }
+
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.preventDefault();
+      showView(el.getAttribute('data-target'));
+    });
+  });
+
+  // ---- Scroll-spy dentro de cada vista de proyecto ----
+  function setupScrollSpy(navId, sectionIds){
+    const nav = document.getElementById(navId);
+    if(!nav) return;
+    const links = nav.querySelectorAll('a[href^="#"]');
+    const sections = sectionIds.map(id => document.getElementById(id));
+
+    function onScroll(){
+      let current = sections[0];
+      const y = window.scrollY + 90;
+      sections.forEach(s => { if (s && s.offsetTop <= y) current = s; });
+      links.forEach(a => a.classList.remove('active'));
+      const idx = sections.indexOf(current);
+      if (idx >= 0 && links[idx]) links[idx].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    nav._onScroll = onScroll;
+
+    links.forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  }
+
+  setupScrollSpy('nav-bikeshop', ['bs-objetivo','bs-bloque-a','bs-bloque-b','bs-bloque-c','bs-bloque-d','bs-siguiente']);
+  setupScrollSpy('nav-senaletica', ['sn-objetivo','sn-mision','sn-fases','sn-preguntas','sn-siguiente']);
+
+  function updateActiveNav(viewId){
+    if(viewId === 'view-bikeshop' && document.getElementById('nav-bikeshop')._onScroll){
+      document.getElementById('nav-bikeshop')._onScroll();
+    }
+    if(viewId === 'view-senaletica' && document.getElementById('nav-senaletica')._onScroll){
+      document.getElementById('nav-senaletica')._onScroll();
+    }
+  }
+</script>
+
+</body>
+</html>
