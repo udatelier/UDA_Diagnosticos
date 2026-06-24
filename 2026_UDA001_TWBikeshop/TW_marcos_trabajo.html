@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UDA — TW · Marcos de Trabajo</title>
+<title>UD_A — TW · Marcos de Trabajo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -54,8 +54,11 @@
   .index-hero p.lead{font-family:var(--sans);font-size:17px;color:var(--muted);margin:0;max-width:560px;}
 
   .eco-grid{padding:40px 0 64px;}
+  .eco-item{display:flex;align-items:flex-start;gap:18px;margin-bottom:18px;}
+  .eco-item-num{font-family:var(--mono);font-size:23px;font-weight:500;color:var(--ink);
+    flex:0 0 auto;padding-top:24px;letter-spacing:-0.02em;}
   .eco-card{display:block;border:1px solid var(--line);border-radius:14px;padding:26px 24px;
-    margin-bottom:18px;cursor:pointer;transition:background .15s ease;text-decoration:none;color:var(--ink);}
+    flex:1;cursor:pointer;transition:background .15s ease;text-decoration:none;color:var(--ink);}
   .eco-card:hover{background:var(--panel);}
   .eco-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;}
   .eco-title{font-size:18px;font-weight:500;margin:0;letter-spacing:-0.005em;}
@@ -128,8 +131,10 @@
   .closing .wrap p{font-family:var(--sans);font-size:16px;color:#d8d8d8;margin:0;}
   .closing .wrap p b{color:#fff;}
 
-  footer{font-family:var(--mono);padding:28px 0 50px;text-align:center;color:var(--muted);font-size:11px;
-    text-transform:uppercase;letter-spacing:.04em;}
+  footer{font-family:var(--mono);padding:28px 0 50px;color:var(--muted);font-size:11px;
+    text-transform:uppercase;letter-spacing:.04em;
+    display:flex;align-items:center;justify-content:center;gap:10px;}
+  footer img{height:22px;opacity:.45;flex:0 0 auto;}
 
   @media (max-width:480px){
     h1{font-size:25px;}
@@ -147,49 +152,57 @@
 <div class="view active" id="view-index">
   <nav>
     <div class="navinner">
-      <span style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:-0.01em;">UD<span style="color:var(--muted);">_</span>A <span class="nav-slash">//</span> un desperfecto atelier</span>
+      <img src="data:image/png;base64,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nPtDQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAEA5AOADhAIQDEA4A4QCEAxAOQDgA4QAQDkA4AOEAhAMQDkA4AIQDEA5AOADhAIQDQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOADhABAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAEA5AOADhAIQDEA4A4QCEAxAOQDgA4QCEA0A4AOEAhAMQDkA4AIQDEA5AOADhAIQDQDgA4QCEAxAOQDgA4QAQDkA4AOEAhAMQDgDhAIQDEA5AOADhABAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEA0A4AOEAhAMQDkA4AIQDEA5AOADhAIQDEA4A4QCEAxAOQDgA4QAQDkA4AOEAhAMQDgDhAIQDEA5AOADhABAOQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEAxAOhwAQDkA4AOEAhAOo0f8JMAAp82Rvg4tgKgAAAABJRU5ErkJggg==" alt="UD.A" style="height:20px;flex:0 0 auto;margin-right:2px;"><span style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:-0.01em;">UD<span style="color:var(--muted);">_</span>A <span class="nav-slash">//</span> un desperfecto atelier</span><span class="kicker" style="margin:0 0 0 auto;">2026_UDA001_TWBikeshop</span>
     </div>
   </nav>
 
   <header class="index-hero wrap">
+    <p style="font-family:var(--mono);font-size:11px;color:#c8c8c8;letter-spacing:.04em;text-transform:uppercase;margin:0 0 14px;">Fecha de diagnóstico // 23 junio 2026</p>
     <p class="kicker">TW · Marcos de trabajo en desarrollo</p>
     <h1>Dos ecosistemas, un mismo <em>lenguaje:</em> la bicicleta.</h1>
-    <p class="lead">Mismo cliente, dos geografías y dos tipos de proyecto. Antes de cotizar cualquiera de los dos, alineamos juntos el marco de trabajo: qué se va a hacer, en qué orden, y qué preguntas hay que resolver primero.</p>
+    <p class="lead">TW compartió interés en trabajar en dos proyectos con una idea en común: el ecosistema de la bicicleta de montaña. Antes de cotizar cualquiera de los dos, alineamos juntos el marco de trabajo: qué se va a hacer, en qué orden, y qué preguntas hay que resolver primero.</p>
+    <p class="lead" style="margin-top:14px;font-size:14px;">El siguiente documento plantea ser un mapa para orientar la conversación y lograr materializar estos proyectos.</p>
   </header>
 
   <div class="eco-grid wrap">
 
+    <div class="eco-item">
+    <span class="eco-item-num">N.1</span>
     <a class="eco-card" data-target="view-bikeshop">
       <div class="eco-top">
-        <p class="eco-title">TW Bike Shop — Showroom y Oportunidades</p>
+        <p class="eco-title">TW — Bike Shop / Showroom y Oportunidades</p>
         <span class="eco-status marco">En diagnóstico</span>
       </div>
-      <p class="eco-desc">Showroom + taller en lote propio, y un punto de servicio para ciclistas cerca de La Pedrera MTB Park.</p>
+      <p class="eco-desc">La visión de un taller con showroom, con la posibilidad de existir en 2 diferentes ubicaciones (Terreno Terrazas vs. Pedrera — Nueva Adquisición). ¿Móvil o fijo? ¿Cuál es el propósito principal? ¿Qué oportunidades se pueden integrar?</p>
       <div class="eco-tags">
-        <span class="tag">La Paz, BCS</span>
-        <span class="tag">Dos sitios</span>
+        <span class="tag">Culiacán, Sin</span>
+        <span class="tag">Dos ubicaciones</span>
       </div>
       <p class="eco-enter">Ver marco de trabajo</p>
     </a>
+    </div>
 
+    <div class="eco-item">
+    <span class="eco-item-num">N.2</span>
     <a class="eco-card" data-target="view-senaletica">
       <div class="eco-top">
-        <p class="eco-title">Señalética y Masterplan de Pistas — Rancho</p>
+        <p class="eco-title">Pistas Rancho Bajar, BCS — Señalética y Master Plan</p>
         <span class="eco-status marco">En diagnóstico</span>
       </div>
-      <p class="eco-desc">Sistema de señalética, infraestructura complementaria y masterplan de pistas ya trazadas, en zona Turquesa / Los Planes.</p>
+      <p class="eco-desc">Sistema de señalética, infraestructura complementaria y masterplan de pistas ya trazadas, en Terrenos Bajar, Zona Los Planes / Turquesa.</p>
       <div class="eco-tags">
-        <span class="tag">Zona Turquesa / Los Planes, BCS</span>
+        <span class="tag">Bajar, BCS</span>
         <span class="tag">Pistas existentes</span>
       </div>
       <p class="eco-enter">Ver marco de trabajo</p>
     </a>
+    </div>
 
   </div>
 
   <p class="index-footnote wrap">Ambos proyectos están en fase de diagnóstico — todavía sin propuesta económica formal. Este documento define el marco sobre el cual vamos a trabajar antes de llegar a esa conversación.</p>
 
-  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+  <footer class="wrap"><img src="data:image/png;base64,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nPtDQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAEA5AOADhAIQDEA4A4QCEAxAOQDgA4QAQDkA4AOEAhAMQDkA4AIQDEA5AOADhAIQDQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOADhABAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAEA5AOADhAIQDEA4A4QCEAxAOQDgA4QCEA0A4AOEAhAMQDkA4AIQDEA5AOADhAIQDQDgA4QCEAxAOQDgA4QAQDkA4AOEAhAMQDgDhAIQDEA5AOADhABAOQDgA4QCEAxAOAOEAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEA0A4AOEAhAMQDkA4AIQDEA5AOADhAIQDEA4A4QCEAxAOQDgA4QAQDkA4AOEAhAMQDgDhAIQDEA5AOADhABAOQDgA4QCEAxAOQDgAhAMQDkA4AOEAhANAOADhAIQDEA5AOACEAxAOQDgA4QCEAxAOhwAQDkA4AOEAhAOo0f8JMAAp82Rvg4tgKgAAAABJRU5ErkJggg==" alt="UD.A">UD_A — un desperfecto atelier · La Paz, BCS · 2026</footer>
 </div>
 
 
@@ -211,12 +224,12 @@
   </nav>
 
   <header class="hero wrap">
-    <p class="kicker">UD.A — un desperfecto atelier · Brief de diagnóstico</p>
+    <p class="kicker">UD_A — un desperfecto atelier · Brief de diagnóstico</p>
     <h1>TW — Bike Shop / Showroom y Oportunidades</h1>
-    <p class="lead">Antes de hablar de metros, materiales o presupuesto, alineemos la secuencia de decisiones: el showroom + taller en tu lote, y el punto de servicio para ciclistas cerca de La Pedrera.</p>
+    <p class="lead">Antes de hablar de metros, materiales o presupuesto, entendamos la visión operativa y de branding del proyecto para encontrar oportunidades que hagan un lugar con propósito. Sumarle a la cultura Biker de Culiacán.</p>
     <div class="tags-row">
-      <span class="tag">La Paz, BCS</span>
-      <span class="tag">Dos sitios</span>
+      <span class="tag">Culiacán, Sin</span>
+      <span class="tag">Dos ubicaciones</span>
       <span class="tag">Sin costo — fase de diagnóstico</span>
     </div>
   </header>
@@ -240,16 +253,6 @@
         <p class="level-sub">Define secuencia, prioridades y cómo se conectan (o no) los dos proyectos.</p>
       </div>
     </div>
-    <div class="level-row">
-      <div class="level-badge">3</div>
-      <div class="level-body">
-        <p class="level-title">Los dos servicios, cada uno con propuesta propia</p>
-        <ul class="level-list">
-          <li>Diseño del showroom + taller</li>
-          <li>Estudio de factibilidad y definición de concepto — punto de servicio La Pedrera</li>
-        </ul>
-      </div>
-    </div>
   </section>
 
   <section id="bs-bloque-a" class="wrap">
@@ -258,13 +261,13 @@
     <div class="why">Para qué sirve esto: <b>saber si trabajamos con datos reales o hay que generarlos primero, y quién lo hace.</b></div>
 
     <details class="qcard">
-      <summary><span class="qnum">01</span><span class="qtext">¿Tienen planos topográficos o levantamiento de medidas del lote del showroom/taller?</span><span class="qchevron">›</span></summary>
+      <summary><span class="qnum">01</span><span class="qtext">¿Tienen planos topográficos o levantamiento del lote cerca de Edificio Terraza?</span><span class="qchevron">›</span></summary>
       <div class="qbody">Si existen, compártelos antes de la siguiente sesión — agilizan todo lo que sigue.</div>
     </details>
 
     <details class="qcard">
-      <summary><span class="qnum">02</span><span class="qtext">¿Ya identificaron un lote específico cerca de La Pedrera, o sigue siendo una zona general por confirmar?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Esto determina si el Estudio de Factibilidad puede analizar un sitio concreto o si primero hay que acotar candidatos.</div>
+      <summary><span class="qnum">02</span><span class="qtext">¿Ya identificaron un lote específico cerca de La Pedrera, o sigue por definirse?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Esto determina si el Estudio de Factibilidad puede analizar un sitio concreto o si primero hay que acotar candidato para determinar dónde es la mejor ubicación.</div>
     </details>
 
     <details class="qcard">
@@ -284,7 +287,7 @@
     <div class="why">Para qué sirve esto: <b>saber si ya tienen una idea de los espacios que necesitan, o si la propuesta debe partir de cero.</b></div>
 
     <details class="qcard">
-      <summary><span class="qnum">05</span><span class="qtext">Para el showroom + taller: ¿tienen una lista propia de espacios, o esperan que UDA proponga el programa desde cero?</span><span class="qchevron">›</span></summary>
+      <summary><span class="qnum">05</span><span class="qtext">Para el showroom + taller: ¿tienen una lista propia de espacios, o esperan que UD_A proponga el programa desde cero?</span><span class="qchevron">›</span></summary>
       <div class="qbody">Aunque sea informal — "necesitamos área de exhibición, taller, baño, bodega" — nos ayuda a no empezar en blanco.</div>
     </details>
 
@@ -294,13 +297,13 @@
     </details>
 
     <details class="qcard">
-      <summary><span class="qnum">07</span><span class="qtext">La zona común con sombra — ¿extensión del showroom, zona de espera de clientes, o espacio de convivencia/eventos?</span><span class="qchevron">›</span></summary>
+      <summary><span class="qnum">07</span><span class="qtext">¿Han pensado en una zona común con sombra? — ¿Como extensión del showroom, zona de espera de clientes, o espacio de convivencia/eventos?</span><span class="qchevron">›</span></summary>
       <div class="qbody">El uso que le den cambia su ubicación, tamaño y materialidad dentro del conjunto.</div>
     </details>
 
     <details class="qcard">
-      <summary><span class="qnum">08</span><span class="qtext">Cuando dicen "la idea móvil" para La Pedrera, ¿se refieren a un carrito o trailer en vez de una construcción fija?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Esto cambia el alcance, el costo y los tiempos de manera importante — vale la pena confirmarlo desde ahora, antes de cualquier diseño.</div>
+      <summary><span class="qnum">08</span><span class="qtext">La decisión de movilidad define todo lo demás: ¿lo ven como una unidad que puede relocalizarse, un container adaptado fijo, o elementos prefabricados ensamblados en sitio?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Cada opción tiene implicaciones distintas en costo, permisos y operación — vale la pena definirlo desde ahora antes de cualquier diseño.</div>
     </details>
   </section>
 
@@ -315,55 +318,34 @@
     </details>
 
     <details class="qcard">
-      <summary><span class="qnum">10</span><span class="qtext">Para el punto de servicio en La Pedrera, ¿qué imaginan que se ofrece ahí?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">
-        <ul>
-          <li>Bebidas / hidratación y algo de comer rápido</li>
-          <li>Servicio o reparación básica de bicicleta — ¿solo ajustes menores o también repuestos?</li>
-          <li>Renta de equipo, venta de accesorios, otro</li>
-        </ul>
-      </div>
+      <summary><span class="qnum">10</span><span class="qtext">¿Han considerado un punto de servicio en la Explanada de La Pedrera? ¿Qué imaginan que se pudiera ofrecer ahí?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Bebidas, hidratación, snacks, renta de equipo, servicio básico de bicicleta — cualquier combinación es válida. Lo importante es definirlo desde ahora porque la ubicación en La Pedrera probablemente requiera una solución <b>off-grid</b>: sin conexión a red eléctrica ni agua municipal. Eso orienta directamente el tipo de estructura y tecnología a proponer.</div>
     </details>
 
     <details class="qcard">
-      <summary><span class="qnum">11</span><span class="qtext">¿Cuentan con capital propio para ambos proyectos, o alguno depende de buscar financiamiento o un socio?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Define si el Estudio de Factibilidad necesita formato apto para presentar a banco o inversionista.</div>
-    </details>
-
-    <details class="qcard">
-      <summary><span class="qnum">12</span><span class="qtext">¿Tienen un techo de presupuesto en mente para alguno de los dos, aunque sea aproximado?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Un número aproximado — aunque cambie después — ya nos ayuda a calibrar escala desde ahora.</div>
+      <summary><span class="qnum">11</span><span class="qtext">¿Tienen un techo de presupuesto en mente para el Bike Shop / Showroom, aunque sea aproximado?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">Un número aproximado — aunque cambie después — ya nos ayuda a calibrar escala y materiales desde ahora.</div>
     </details>
   </section>
 
   <section id="bs-bloque-d" class="wrap">
     <p class="num">Bloque D</p>
-    <h2>Secuencia e intención</h2>
-    <div class="why">Para qué sirve esto: <b>construir la Hoja de Ruta — qué va primero y por qué.</b></div>
+    <h2>Visión y misión del proyecto</h2>
+    <div class="why">Para qué sirve esto: <b>entender el propósito detrás del espacio antes de diseñar nada.</b></div>
 
     <details class="qcard">
-      <summary><span class="qnum">13</span><span class="qtext">¿Cuál de los dos proyectos les interesa materializar primero, o la intención es avanzar ambos en paralelo?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">No hay respuesta incorrecta — solo determina el orden en que UDA organiza el trabajo.</div>
+      <summary><span class="qnum">12</span><span class="qtext">Más allá del negocio, ¿cuál es el propósito de este proyecto? Un lugar que vende bicis es muy distinto a un punto de encuentro para la comunidad MTB de Culiacán — esa diferencia define el programa, la escala y el tono del espacio.</span><span class="qchevron">›</span></summary>
+      <div class="qbody">No hay respuesta incorrecta — cualquier posición en ese rango es un punto de partida válido para el diseño.</div>
     </details>
 
-    <details class="qcard">
-      <summary><span class="qnum">14</span><span class="qtext">¿El showroom/taller genera ingresos que ayuden a financiar La Pedrera, o son independientes en capital y operación?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Si están conectados financieramente, la Hoja de Ruta tiene que reflejar esa dependencia.</div>
-    </details>
-
-    <details class="qcard">
-      <summary><span class="qnum">15</span><span class="qtext">Pensando en 12–24 meses, ¿cómo se imaginan que estos dos espacios conviven entre sí?</span><span class="qchevron">›</span></summary>
-      <div class="qbody">Una sola marca, negocios separados, o todavía sin definir — cualquier respuesta es un buen punto de partida.</div>
-    </details>
   </section>
 
   <section id="bs-siguiente" class="wrap">
     <p class="num">Próximos pasos</p>
-    <h2>Con sus respuestas, UDA prepara:</h2>
+    <h2>Con sus respuestas, UD_A prepara:</h2>
     <div class="step-list">
       <div class="step"><div class="step-num"></div><p>Una Hoja de Ruta / Masterplan de coordinación — la secuencia de trabajo entre ambos proyectos.</p></div>
       <div class="step"><div class="step-num"></div><p>Una propuesta formal de honorarios para el Diseño del Showroom + Taller.</p></div>
-      <div class="step"><div class="step-num"></div><p>Una propuesta formal de honorarios para el Estudio de Factibilidad y Definición de Concepto del punto de servicio en La Pedrera.</p></div>
     </div>
   </section>
 
@@ -373,7 +355,7 @@
     </div>
   </div>
 
-  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+  <footer class="wrap">UD_A — un desperfecto atelier · La Paz, BCS · 2026</footer>
 </div>
 
 
@@ -394,8 +376,8 @@
   </nav>
 
   <header class="hero wrap">
-    <p class="kicker">UD.A — un desperfecto atelier · Marco de trabajo</p>
-    <h1>Señalética y Masterplan de Pistas — Rancho</h1>
+    <p class="kicker">UD_A — un desperfecto atelier · Marco de trabajo</p>
+    <h1>Pistas Rancho Bajar, BCS — Señalética y Master Plan</h1>
     <p class="lead">Las pistas ya están trazadas. Lo que falta es el sistema que las conecta entre sí, con el visitante, y con lo que el rancho representa.</p>
     <div class="tags-row">
       <span class="tag">Zona Turquesa / Los Planes, BCS</span>
@@ -458,7 +440,7 @@
       <div class="level-badge">4</div>
       <div class="level-body">
         <p class="level-title">Conceptualización estética</p>
-        <p class="level-sub">Cómo se ven y sienten esos elementos, coherente con UDA y con la misión del rancho.</p>
+        <p class="level-sub">Cómo se ven y sienten esos elementos, coherente con UD_A y con la misión del rancho.</p>
       </div>
     </div>
     <div class="level-row">
@@ -489,11 +471,16 @@
       <summary><span class="qnum">—</span><span class="qtext">¿Hay puntos de acceso/trailhead ya definidos, o eso también está abierto?</span><span class="qchevron">›</span></summary>
       <div class="qbody">El sistema de señalética típico se organiza en niveles: kiosco principal en el acceso, señales de cruce en puntos de decisión, y marcadores a lo largo de cada pista.</div>
     </details>
+
+    <details class="qcard">
+      <summary><span class="qnum">—</span><span class="qtext">¿Cómo se llega al rancho — en vehículo, en bicicleta, o ambos? ¿Hay un lugar donde dejar el carro si vienen grupos?</span><span class="qchevron">›</span></summary>
+      <div class="qbody">El acceso define dónde empieza la experiencia. Si se prevén grupos, se necesita pensar en zona de estacionamiento, punto de reunión y cómo se activan las pistas desde ahí. ¿Hay ya una idea de cómo se organiza esa llegada?</div>
+    </details>
   </section>
 
   <section id="sn-siguiente" class="wrap">
     <p class="num">Próximos pasos</p>
-    <h2>Con esta conversación resuelta, UDA prepara:</h2>
+    <h2>Con esta conversación resuelta, UD_A prepara:</h2>
     <div class="step-list">
       <div class="step"><div class="step-num"></div><p>Síntesis de la misión del rancho, como documento base de referencia para todo el proyecto.</p></div>
       <div class="step"><div class="step-num"></div><p>Catálogo de elementos de señalética e infraestructura complementaria, con referencias técnicas y de materiales.</p></div>
@@ -507,7 +494,7 @@
     </div>
   </div>
 
-  <footer class="wrap">UD.A — un desperfecto atelier · La Paz, BCS · 2026</footer>
+  <footer class="wrap">UD_A — un desperfecto atelier · La Paz, BCS · 2026</footer>
 </div>
 
 
