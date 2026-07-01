@@ -23,7 +23,7 @@
     font-family:var(--sans);
     -webkit-font-smoothing:antialiased;}
   body{line-height:1.6;font-size:16px;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 48px;}
 
   h1,h2,h3,.eco-title,.level-title,.qtext,.step-num,.brand,.eco-status,.kicker,.tag,.qnum,.num,
   .nav-back,.eco-enter{font-family:var(--mono);}
@@ -32,7 +32,7 @@
   nav{position:sticky;top:0;z-index:50;background:var(--bg);
     border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;
     -webkit-overflow-scrolling:touch;}
-  nav .navinner{display:flex;gap:10px;padding:14px 20px;align-items:center;font-family:var(--mono);}
+  nav .navinner{display:flex;gap:10px;padding:14px 48px;align-items:center;font-family:var(--mono);}
   nav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.02em;
     text-transform:uppercase;flex:0 0 auto;cursor:pointer;}
   nav a.active{color:var(--ink);border-bottom:2px solid var(--ink);padding-bottom:4px;}
@@ -73,6 +73,13 @@
   .eco-card:hover .eco-enter::after{transform:translateX(3px);}
 
   .index-footnote{font-family:var(--sans);padding:0 0 48px;color:var(--muted);font-size:13px;max-width:560px;}
+
+  .info-grid{padding:30px 0 36px;}
+  .info-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;}
+  .info-card{border:1px solid var(--line-soft);border-radius:16px;padding:22px;background:var(--panel);}
+  .info-card h3{margin:0 0 10px;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);}
+  .info-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;}
+  @media (max-width:680px){.info-row{grid-template-columns:1fr;}}
 
   /* ===== PROJECT VIEW ===== */
   header.hero{padding:48px 0 36px;border-bottom:1px solid var(--line);}
@@ -166,9 +173,10 @@
     <p style="font-family:var(--mono);font-size:11px;color:#c8c8c8;letter-spacing:.04em;text-transform:uppercase;margin:0 0 14px;">Fecha de diagnóstico // 23 junio 2026</p>
     <p class="kicker">TW · Marcos de trabajo en desarrollo</p>
     <h1>Dos ecosistemas, un mismo <em>lenguaje:</em> la bicicleta.</h1>
-    <p class="lead">TW compartió interés en trabajar en dos proyectos con una idea en común: el ecosistema de la bicicleta de montaña. Antes de cotizar cualquiera de los dos, alineamos juntos el marco de trabajo: qué se va a hacer, en qué orden, y qué preguntas hay que resolver primero.</p>
-    <p class="lead" style="margin-top:14px;font-size:14px;">El siguiente documento plantea ser un mapa para orientar la conversación y lograr materializar estos proyectos.</p>
+    <p class="lead">TW trabaja dos propuestas relacionadas con el mundo MTB: un Bike Shop / Showroom en Culiacán y un masterplan de señalética para las pistas de Rancho Bajar, BCS. Aquí están los datos generales que guían este diagnóstico y los pasos siguientes.</p>
+    <p class="lead" style="margin-top:14px;font-size:14px;">Este documento organiza la información clave antes de avanzar a una propuesta económica y un diseño con propósito.</p>
   </header>
+
 
   <div class="eco-grid wrap">
 
@@ -179,7 +187,7 @@
         <p class="eco-title">TW — Bike Shop / Showroom y Oportunidades</p>
         <span class="eco-status marco">En diagnóstico</span>
       </div>
-      <p class="eco-desc">La visión de un taller con showroom, con la posibilidad de existir en 2 diferentes ubicaciones (Terreno Terrazas vs. Pedrera — Nueva Adquisición). ¿Móvil o fijo? ¿Cuál es el propósito principal? ¿Qué oportunidades se pueden integrar?</p>
+      <p class="eco-desc">Taller con showroom para la cultura MTB de Culiacán, evaluando dos ubicaciones posibles: Terreno Terrazas y una nueva opción en La Pedrera. El foco está en definir si será una unidad fija, móvil o semifijo y qué servicios incorpora.</p>
       <div class="eco-tags">
         <span class="tag">Culiacán, Sin</span>
         <span class="tag">Dos ubicaciones</span>
@@ -195,7 +203,7 @@
         <p class="eco-title">Pistas Rancho Bajar, BCS — Señalética y Master Plan</p>
         <span class="eco-status marco">En diagnóstico</span>
       </div>
-      <p class="eco-desc">Sistema de señalética, infraestructura complementaria y masterplan de pistas ya trazadas, en Terrenos Bajar, Zona Los Planes / Turquesa.</p>
+      <p class="eco-desc">Sistema de señalética e infraestructura complementaria para las pistas existentes en Rancho Bajar, en la Zona Turquesa / Los Planes, BCS. El foco es conectar experiencia, seguridad y la identidad del rancho.</p>
       <div class="eco-tags">
         <span class="tag">Bajar, BCS</span>
         <span class="tag">Pistas existentes</span>
@@ -232,13 +240,34 @@
   <header class="hero wrap">
     <p class="kicker">UD_A — un desperfecto atelier · Brief de diagnóstico</p>
     <h1>TW — Bike Shop / Showroom y Oportunidades</h1>
-    <p class="lead">Antes de hablar de metros, materiales o presupuesto, entendamos la visión operativa y de branding del proyecto para encontrar oportunidades que hagan un lugar con propósito. Sumarle a la cultura Biker de Culiacán.</p>
+    <p class="lead">Antes de hablar de metros, materiales o presupuesto, entendamos la visión operativa, el alcance y la vocación del espacio. Definimos el propósito para un lugar con sentido en la cultura biker de Culiacán, entre Terreno Terrazas y La Pedrera.</p>
     <div class="tags-row">
       <span class="tag">Culiacán, Sin</span>
       <span class="tag">Dos ubicaciones</span>
       <span class="tag">Sin costo — fase de diagnóstico</span>
     </div>
   </header>
+
+  <section class="wrap info-grid">
+    <div class="info-row">
+      <div class="info-card">
+        <h3>Propósito</h3>
+        <p>Definir si el Bike Shop es un showroom fijo, una solución móvil o un modelo semifijo con servicios de taller y venta.</p>
+      </div>
+      <div class="info-card">
+        <h3>Ubicaciones</h3>
+        <p>Terreno Terrazas y posible ubicación en La Pedrera. El objetivo es definir cuál tiene mejor potencial operativo y de experiencia.</p>
+      </div>
+      <div class="info-card">
+        <h3>Preguntas clave</h3>
+        <p>Uso de suelo, levantamientos, programa de espacios, operación diaria y conectividad off-grid en La Pedrera.</p>
+      </div>
+      <div class="info-card">
+        <h3>Resultado esperado</h3>
+        <p>Una hoja de ruta clara para la propuesta de diseño y la futura cotización de honorarios.</p>
+      </div>
+    </div>
+  </section>
 
   <section id="bs-objetivo" class="wrap">
     <p class="num">Objetivo de este documento</p>
@@ -392,10 +421,31 @@
     </div>
   </header>
 
+  <section class="wrap info-grid">
+    <div class="info-row">
+      <div class="info-card">
+        <h3>Propósito</h3>
+        <p>Crear un sistema de señalética que oriente y enriquezca la experiencia en Rancho Bajar, alineado con la identidad del lugar.</p>
+      </div>
+      <div class="info-card">
+        <h3>Alcance</h3>
+        <p>Mapa de rutas, señalización de cruces, kioscos de acceso y elementos narrativos según la misión del rancho.</p>
+      </div>
+      <div class="info-card">
+        <h3>Datos clave</h3>
+        <p>Pistas existentes, accesos, uso compartido de territorio, y misión del rancho como base de diseño.</p>
+      </div>
+      <div class="info-card">
+        <h3>Resultado esperado</h3>
+        <p>Un marco claro para avanzar a la propuesta de elementos, materiales y honorarios.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="sn-objetivo" class="wrap">
     <p class="num">Objetivo de este documento</p>
     <h2>Definir el marco antes de diseñar nada.</h2>
-    <p class="section-intro">Este proyecto tiene una particularidad: antes de hablar de materiales, catálogo de elementos o estética, necesitamos resolver juntos algo más fundamental — a qué se subordina la señalética y el masterplan de pistas dentro de la visión completa del rancho.</p>
+    <p class="section-intro">Este proyecto tiene una particularidad: antes de hablar de materiales, catálogo de elementos o estética, necesitamos resolver juntos algo más fundamental — a qué responde la señalética y el masterplan de pistas dentro de la visión completa del rancho.</p>
 
     <div class="pending"><b>Pendiente clave:</b>&nbsp;todavía no está definida la misión / vocación del rancho (¿conservación? ¿turismo rural? ¿hospedaje? ¿educación ambiental?). Resolver esto es el primer paso del proceso, no el último.</div>
   </section>
@@ -403,7 +453,7 @@
   <section id="sn-mision" class="wrap">
     <p class="num">Punto de partida</p>
     <h2>La conversación de misión</h2>
-    <p class="section-intro">Sin saber a qué se subordina el sitio, cualquier decisión de materiales o estética sería diseño sin propósito. Por eso este proceso empieza con una conversación abierta, no con un catálogo de opciones.</p>
+    <p class="section-intro">Sin saber a qué responde el sitio, cualquier decisión de materiales o estética sería diseño sin propósito. Por eso este proceso empieza con una conversación abierta, no con un catálogo de opciones.</p>
 
     <details class="qcard">
       <summary><span class="qnum">—</span><span class="qtext">¿Qué representa o representará este rancho — más allá de tener pistas de mountain bike?</span><span class="qchevron">›</span></summary>
@@ -425,7 +475,7 @@
       <div class="level-badge filled">1</div>
       <div class="level-body">
         <p class="level-title">Conversación de misión del rancho</p>
-        <p class="level-sub">Define el propósito al que todo lo demás se subordina.</p>
+        <p class="level-sub">Define el propósito al que todo lo demás responde.</p>
       </div>
     </div>
     <div class="level-row">
